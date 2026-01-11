@@ -1,2 +1,2 @@
 # intycode-site
-Programminc the intellisivion
+Programming the intellisivion
