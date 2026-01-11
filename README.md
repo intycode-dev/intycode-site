@@ -1,2 +1,2 @@
 # intycode-site
-My siye
+Programminc the intellisivion
