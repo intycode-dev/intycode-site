@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntyCoding Lab - Sandbox</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1>IntyCoding Laboratory</h1>
+    <p><em>Strictly for experimental use and drafting content.</em></p>
+
+    <div class="box">
+        <h2>Draft: Project Roadmap</h2>
+        <p>This is where I'll structure the chapters for the <strong>Intellivision Programming Manual</strong>.</p>
+        <ul>
+            <li><strong>Chapter 1:</strong> Historical context and the CP1610 CPU.</li>
+            <li><strong>Chapter 2:</strong> Setting up the development environment (jZIntv, AS1600).</li>
+            <li><strong>Chapter 3:</strong> Hello World - Manipulating the BACKTAB.</li>
+            <li><strong>Chapter 4:</strong> The STIC - Graphics, Colors, and Sprites (MOBs).</li>
+        </ul>
+    </div>
+
+    <div class="box">
+        <h2>Technical Testing Ground</h2>
+        <p>Checking how Assembly code snippets look on the page:</p>
+        <pre style="background: #000; padding: 15px; color: #0f0; border-radius: 5px; overflow-x: auto;">
+; --- Simple Clear Screen Routine ---
+CLEAR_SCREEN:
+    MVII #$0000, R0    ; Move 0 into Register 0
+    MVII #$0200, R4    ; Start of BACKTAB (Screen Memory)
+    MVII #240,   R1    ; Number of tiles (20x12)
+LOOP:
+    MVO  R0, R4        ; Output R0 to memory address in R4
+    INCR R4            ; Increment memory pointer
+    DECR R1            ; Decrement counter
+    BNE  LOOP          ; If counter != 0, repeat
+    RETURN
+        </pre>
+    </div>
+
+    <p><a href="index.html">← Back to Public Homepage</a></p>
+
+    <footer>
+        <small>Private staging area - IntyCoding.dev © 2026</small>
+    </footer>
+
+</body>
+</html>
