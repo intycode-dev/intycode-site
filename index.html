@@ -120,22 +120,21 @@
     <script>
         // Utilizziamo un'API differente (Hicounter o simili) più tollerante ai redirect
         // Se CountAPI dovesse essere offline, questo script gestisce l'errore elegantemente
-async function loadCounter() {
-    const display = document.getElementById('visitor-count');
-    // Sostituisci 'tuo-username' con il tuo nome GitHub
-    const url = 'https://count.getloli.com/get/@intycoding-site?theme=asoul';
+    async function loadCounter() {
+        const display = document.getElementById('visitor-count');
+        // Sostituisci 'tuo-username' con il tuo nome GitHub
+        const url = 'https://count.getloli.com/get/@intycoding-site?theme=asoul';
 
-    try {
-        const response = await fetch(url);
-        const data = await response.json();
-        // Questo servizio è pensato per GitHub e gestisce bene il traffico
-        display.innerText = data.value.toString().padStart(5, '0');
-    } catch (error) {
-        console.error("Errore contatore GitHub:", error);
-        display.innerText = "00001";
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            // Questo servizio è pensato per GitHub e gestisce bene il traffico
+            display.innerText = data.value.toString().padStart(5, '0');
+        } catch (error) {
+            console.error("Errore contatore GitHub:", error);
+            display.innerText = "00011";
+        }
     }
-}
-document.addEventListener('DOMContentLoaded', loadCounter);
         document.addEventListener('DOMContentLoaded', loadCounter);
     </script>
 
