@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IntyCoding.dev | Work in Progress</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -16,7 +17,7 @@
             --gold: #FFD700;
         }
 
-        /* Forza il font retro su TUTTO */
+        /* Forza il font retro su ogni elemento della pagina */
         * {
             font-family: 'Press Start 2P', cursive !important;
             box-sizing: border-box;
@@ -31,78 +32,110 @@
             height: 100vh;
             margin: 0;
             overflow: hidden;
-            text-transform: uppercase; /* Stile tipico Intellivision */
+            text-transform: uppercase;
         }
 
         .content {
             text-align: center;
-            padding: 20px;
-            border: 4px double var(--accent); /* Cornice in stile retro */
-            background: rgba(0,0,0,0.2);
-        }
-
-        h1 {
-            font-size: 1.5rem;
-            margin: 20px 0;
-            line-height: 1.6;
-            color: var(--gold);
-        }
-
-        p {
-            font-size: 0.7rem;
-            color: #94a3b8;
-            margin-bottom: 20px;
-            line-height: 1.8;
+            padding: 30px;
+            border: 4px double var(--accent);
+            background: rgba(15, 23, 42, 0.8);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+            max-width: 90%;
         }
 
         .status-badge {
             color: var(--accent);
             font-size: 0.6rem;
             letter-spacing: 2px;
-            animation: blink 1s infinite; /* Effetto lampeggiante */
+            margin-bottom: 20px;
+            animation: blink 1.5s infinite;
         }
 
         @keyframes blink {
-            50% { opacity: 0; }
+            50% { opacity: 0.3; }
         }
 
+        h1 {
+            font-size: 1.4rem;
+            margin: 20px 0;
+            line-height: 1.8;
+            color: var(--gold);
+        }
+
+        .highlight {
+            color: var(--accent);
+        }
+
+        p {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        /* Container del contatore visite */
         .counter-container {
-            margin-top: 30px;
-            padding: 15px;
+            margin-top: 40px;
+            padding-top: 20px;
             border-top: 2px solid #334155;
         }
 
         .counter-label {
             font-size: 0.5rem;
             color: #64748b;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
         }
 
-        img#visitor-cap {
-            filter: brightness(1.2) contrast(1.2);
+        /* Ottimizzazione dell'immagine del contatore */
+        #visitor-cap {
             image-rendering: pixelated;
+            filter: brightness(1.2);
+            border: 1px solid #334155;
+            padding: 4px;
+            background: #000;
         }
     </style>
 </head>
 <body>
+
     <div class="content">
         <div class="status-badge">System Status: Booting...</div>
-        <h1>Welcome to <br>IntyCoding.dev</h1>
-        <p>Mastering CP1610 Assembly<br>and Intellivision Dev.</p>
         
+        <h1>Welcome to <br><span class="highlight">IntyCoding.dev</span></h1>
+        
+        <p>Mastering CP1610 Assembly</p>
+        <p>and Intellivision Development.</p>
+        
+        <p style="font-size: 0.5rem; margin-top: 20px; color: #475569;">
+            The definitive guide is under construction.
+        </p>
+
         <div class="counter-container">
-            <div class="counter-label">Global Visitors</div>
-            <img id="visitor-cap" src="https://hitwebcounter.com/counter/counter.php?page=sfcfnd4hfxlg6w24kxnfwf57p43nw35z5se&style=0005&nbdigits=5&type=page&initCount=0" border="0" />
+            <div class="counter-label">Base Spaziale Visitors</div>
+            <div align="center">
+                <a href="https://www.hitwebcounter.com" target="_blank">
+                    <img id="visitor-cap" 
+                         src="https://hitwebcounter.com/counter/counter.php?page=sfcfnd4hfxlg6w24kxnfwf57p43nw35z5se&style=0036&nbdigits=5&type=page&initCount=0" 
+                         title="Free Counter" 
+                         Alt="web counter" 
+                         border="0" />
+                </a>
+            </div>
         </div>
     </div>
 
     <script>
-        // Fix per il contatore: forza il ricaricamento ignorando la cache
+        // Questo script impedisce al browser di caricare una versione vecchia (cache) dell'immagine
         window.onload = function() {
             var img = document.getElementById('visitor-cap');
-            var currentSrc = img.src;
-            img.src = currentSrc + "&t=" + new Date().getTime();
+            if(img) {
+                var currentSrc = img.src;
+                img.src = currentSrc + "&t=" + new Date().getTime();
+            }
         };
     </script>
+
 </body>
 </html>
