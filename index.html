@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IntyCoding.dev | Work in Progress</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #0f172a;
             --text: #f8fafc;
             --accent: #38bdf8;
+            --retro-font: 'Press Start 2P', cursive;
         }
         body {
             background-color: var(--bg);
@@ -26,56 +28,67 @@
             padding: 20px;
         }
         h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            letter-spacing: -1px;
-        }
-        .highlight {
+            font-family: var(--retro-font); /* Applicato al titolo */
+            font-size: 1.8rem; /* Ridotto perché il font 8-bit è molto grande */
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
             color: var(--accent);
         }
+        .highlight {
+            color: #FFD700; /* Giallo Oro classico Intellivision */
+        }
         p {
-            font-size: 1.25rem;
+            font-size: 1rem;
             color: #94a3b8;
             margin-bottom: 2rem;
         }
         .status-badge {
+            font-family: var(--retro-font);
             background: rgba(56, 189, 248, 0.1);
             color: var(--accent);
             padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            border-radius: 4px; /* Più squadrato per stile retro */
+            font-size: 0.7rem;
+            font-weight: 400;
             text-transform: uppercase;
-            letter-spacing: 1px;
             border: 1px solid rgba(56, 189, 248, 0.2);
+            margin-bottom: 20px;
+            display: inline-block;
         }
-        /* Stile per il contatore visite */
         .counter-container {
             margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            padding: 20px;
+            border: 2px solid #334155;
+            background: rgba(0,0,0,0.3);
         }
         .counter-label {
-            font-size: 0.8rem;
+            font-family: var(--retro-font);
+            font-size: 0.6rem;
             color: #64748b;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        /* Rende l'immagine del contatore coerente */
+        .counter-container img {
+            image-rendering: pixelated;
+            filter: brightness(1.1) contrast(1.2);
         }
     </style>
 </head>
 <body>
     <div class="content">
-        <div class="status-badge">Work in Progress</div>
-        <h1>Welcome to <span class="highlight">IntyCoding.dev</span></h1>
+        <div class="status-badge">System Status: Loading...</div>
+        <h1>Welcome to <br><span class="highlight">IntyCoding.dev</span></h1>
         <p>Mastering CP1610 Assembly and Intellivision Development.</p>
-        <p style="font-size: 0.9rem;">The definitive guide is currently under development. Stay tuned.</p>
+        <p style="font-size: 0.8rem; font-style: italic;">The definitive guide is currently under development.</p>
 
         <div class="counter-container">
+            <div class="counter-label">Global Visitors</div>
             <div align="center">
                 <img src="https://hitwebcounter.com/counter/counter.php?page=sfcfnd4hfxlg6w24kxnfwf57p43nw35z5se&style=0005&nbdigits=5&type=page&initCount=0" title="Free Counter" Alt="web counter" border="0" />
             </div>
         </div>
-        </div>
+    </div>
 </body>
 </html>
