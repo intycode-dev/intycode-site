@@ -122,28 +122,19 @@
         // Se CountAPI dovesse essere offline, questo script gestisce l'errore elegantemente
 async function loadCounter() {
     const display = document.getElementById('visitor-count');
-    const namespace = 'intycoding_site_2026'; // Cambia leggermente il nome per resettare
-    const key = 'main_visits';
+    // Sostituisci 'tuo-username' con il tuo nome GitHub
+    const url = 'https://count.getloli.com/get/@intycoding-site?theme=asoul';
 
     try {
-        // Usiamo un servizio alternativo più stabile
-        const response = await fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/increment`);
-        
-        if (!response.ok) throw new Error('Server non raggiungibile');
-        
+        const response = await fetch(url);
         const data = await response.json();
-        
-        if (data && data.count) {
-            // Nota: counterapi.dev usa "count" invece di "value"
-            display.innerText = data.count.toString().padStart(5, '0');
-        }
+        // Questo servizio è pensato per GitHub e gestisce bene il traffico
+        display.innerText = data.value.toString().padStart(5, '0');
     } catch (error) {
-        console.error('Errore fatale contatore:', error);
-        // Se vedi ancora 00001, il problema è la connessione o il blocco CORS
-        display.innerText = "ERR01"; 
+        console.error("Errore contatore GitHub:", error);
+        display.innerText = "00001";
     }
 }
-
 document.addEventListener('DOMContentLoaded', loadCounter);
         document.addEventListener('DOMContentLoaded', loadCounter);
     </script>
