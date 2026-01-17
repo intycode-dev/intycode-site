@@ -122,28 +122,29 @@
         // Se CountAPI dovesse essere offline, questo script gestisce l'errore elegantemente
 async function loadCounter() {
     const display = document.getElementById('visitor-count');
-    // Usiamo GoatCounter o una versione stabile di CountAPI
-    // In questo esempio usiamo countapi.it che è un rimpiazzo comune
-    const namespace = 'intycoding.dev';
-    const key = 'homepage';
+    const namespace = 'intycoding_site_2026'; // Cambia leggermente il nome per resettare
+    const key = 'main_visits';
 
     try {
-        // Nota: ho cambiato l'URL in uno funzionante
-        const response = await fetch(`https://api.countapi.it/hit/${namespace}/${key}`);
+        // Usiamo un servizio alternativo più stabile
+        const response = await fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/increment`);
         
-        if (!response.ok) throw new Error('Network response was not ok');
+        if (!response.ok) throw new Error('Server non raggiungibile');
         
         const data = await response.json();
         
-        if (data && data.value) {
-            display.innerText = data.value.toString().padStart(5, '0');
+        if (data && data.count) {
+            // Nota: counterapi.dev usa "count" invece di "value"
+            display.innerText = data.count.toString().padStart(5, '0');
         }
     } catch (error) {
-        console.error('Counter error:', error);
-        // Fallback: se fallisce ancora, almeno sappiamo che il sito carica
-        display.innerText = "00001"; 
+        console.error('Errore fatale contatore:', error);
+        // Se vedi ancora 00001, il problema è la connessione o il blocco CORS
+        display.innerText = "ERR01"; 
     }
 }
+
+document.addEventListener('DOMContentLoaded', loadCounter);
         document.addEventListener('DOMContentLoaded', loadCounter);
     </script>
 
