@@ -4,91 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IntyCoding.dev | Work in Progress</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg: #0f172a;
             --text: #f8fafc;
             --accent: #38bdf8;
-            --retro-font: 'Press Start 2P', cursive;
+            --gold: #FFD700;
         }
+
+        /* Forza il font retro su TUTTO */
+        * {
+            font-family: 'Press Start 2P', cursive !important;
+            box-sizing: border-box;
+        }
+
         body {
             background-color: var(--bg);
             color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
             margin: 0;
             overflow: hidden;
+            text-transform: uppercase; /* Stile tipico Intellivision */
         }
+
         .content {
             text-align: center;
             padding: 20px;
+            border: 4px double var(--accent); /* Cornice in stile retro */
+            background: rgba(0,0,0,0.2);
         }
+
         h1 {
-            font-family: var(--retro-font); /* Applicato al titolo */
-            font-size: 1.8rem; /* Ridotto perché il font 8-bit è molto grande */
-            margin-bottom: 1.5rem;
-            line-height: 1.4;
-            color: var(--accent);
+            font-size: 1.5rem;
+            margin: 20px 0;
+            line-height: 1.6;
+            color: var(--gold);
         }
-        .highlight {
-            color: #FFD700; /* Giallo Oro classico Intellivision */
-        }
+
         p {
-            font-size: 1rem;
-            color: #94a3b8;
-            margin-bottom: 2rem;
-        }
-        .status-badge {
-            font-family: var(--retro-font);
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--accent);
-            padding: 8px 16px;
-            border-radius: 4px; /* Più squadrato per stile retro */
             font-size: 0.7rem;
-            font-weight: 400;
-            text-transform: uppercase;
-            border: 1px solid rgba(56, 189, 248, 0.2);
+            color: #94a3b8;
             margin-bottom: 20px;
-            display: inline-block;
+            line-height: 1.8;
         }
-        .counter-container {
-            margin-top: 3rem;
-            padding: 20px;
-            border: 2px solid #334155;
-            background: rgba(0,0,0,0.3);
-        }
-        .counter-label {
-            font-family: var(--retro-font);
+
+        .status-badge {
+            color: var(--accent);
             font-size: 0.6rem;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
+            letter-spacing: 2px;
+            animation: blink 1s infinite; /* Effetto lampeggiante */
         }
-        /* Rende l'immagine del contatore coerente */
-        .counter-container img {
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        .counter-container {
+            margin-top: 30px;
+            padding: 15px;
+            border-top: 2px solid #334155;
+        }
+
+        .counter-label {
+            font-size: 0.5rem;
+            color: #64748b;
+            margin-bottom: 10px;
+        }
+
+        img#visitor-cap {
+            filter: brightness(1.2) contrast(1.2);
             image-rendering: pixelated;
-            filter: brightness(1.1) contrast(1.2);
         }
     </style>
 </head>
 <body>
     <div class="content">
-        <div class="status-badge">System Status: Loading...</div>
-        <h1>Welcome to <br><span class="highlight">IntyCoding.dev</span></h1>
-        <p>Mastering CP1610 Assembly and Intellivision Development.</p>
-        <p style="font-size: 0.8rem; font-style: italic;">The definitive guide is currently under development.</p>
-
+        <div class="status-badge">System Status: Booting...</div>
+        <h1>Welcome to <br>IntyCoding.dev</h1>
+        <p>Mastering CP1610 Assembly<br>and Intellivision Dev.</p>
+        
         <div class="counter-container">
             <div class="counter-label">Global Visitors</div>
-            <div align="center">
-                <img src="https://hitwebcounter.com/counter/counter.php?page=sfcfnd4hfxlg6w24kxnfwf57p43nw35z5se&style=0005&nbdigits=5&type=page&initCount=0" title="Free Counter" Alt="web counter" border="0" />
-            </div>
+            <img id="visitor-cap" src="https://hitwebcounter.com/counter/counter.php?page=sfcfnd4hfxlg6w24kxnfwf57p43nw35z5se&style=0005&nbdigits=5&type=page&initCount=0" border="0" />
         </div>
     </div>
+
+    <script>
+        // Fix per il contatore: forza il ricaricamento ignorando la cache
+        window.onload = function() {
+            var img = document.getElementById('visitor-cap');
+            var currentSrc = img.src;
+            img.src = currentSrc + "&t=" + new Date().getTime();
+        };
+    </script>
 </body>
 </html>
