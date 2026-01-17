@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     
     <style>
+        /* 2. CONFIGURAZIONE STILE */
         :root {
             --bg: #0f172a;
             --text: #f8fafc;
@@ -17,8 +18,8 @@
             --gold: #FFD700;
         }
 
-        /* Forza il font retro su ogni elemento della pagina */
         * {
+            /* Forza il font retro su tutto il documento */
             font-family: 'Press Start 2P', cursive !important;
             box-sizing: border-box;
         }
@@ -37,23 +38,11 @@
 
         .content {
             text-align: center;
-            padding: 30px;
+            padding: 40px;
             border: 4px double var(--accent);
-            background: rgba(15, 23, 42, 0.8);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
-            max-width: 90%;
-        }
-
-        .status-badge {
-            color: var(--accent);
-            font-size: 0.6rem;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            animation: blink 1.5s infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0.3; }
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
+            max-width: 600px;
         }
 
         h1 {
@@ -70,14 +59,25 @@
         p {
             font-size: 0.7rem;
             color: #94a3b8;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             line-height: 1.6;
         }
 
-        /* Container del contatore visite */
-        .counter-container {
+        .status-badge {
+            color: var(--accent);
+            font-size: 0.6rem;
+            margin-bottom: 25px;
+            animation: blink 1.2s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.2; }
+        }
+
+        /* 3. STILE CONTATORE */
+        .counter-section {
             margin-top: 40px;
-            padding-top: 20px;
+            padding-top: 25px;
             border-top: 2px solid #334155;
         }
 
@@ -88,12 +88,12 @@
             letter-spacing: 1px;
         }
 
-        /* Ottimizzazione dell'immagine del contatore */
         #visitor-cap {
+            /* Mantiene i pixel nitidi e non sfocati */
             image-rendering: pixelated;
-            filter: brightness(1.2);
-            border: 1px solid #334155;
-            padding: 4px;
+            filter: brightness(1.1);
+            border: 1px solid #475569;
+            padding: 5px;
             background: #000;
         }
     </style>
@@ -106,18 +106,14 @@
         <h1>Welcome to <br><span class="highlight">IntyCoding.dev</span></h1>
         
         <p>Mastering CP1610 Assembly</p>
-        <p>and Intellivision Development.</p>
+        <p>and Intellivision Dev.</p>
         
-        <p style="font-size: 0.5rem; margin-top: 20px; color: #475569;">
-            The definitive guide is under construction.
-        </p>
-
-        <div class="counter-container">
-            <div class="counter-label">Base Spaziale Visitors</div>
+        <div class="counter-section">
+            <div class="counter-label">Visitors in the base</div>
             <div align="center">
                 <a href="https://www.hitwebcounter.com" target="_blank">
                     <img id="visitor-cap" 
-                         src="https://hitwebcounter.com/counter/counter.php?page=sfcfnd4hfxlg6w24kxnfwf57p43nw35z5se&style=0001&nbdigits=5&type=page&initCount=0" 
+                         src="https://hitwebcounter.com/counter/counter.php?page=sfcfnd4hfxlg6w24kxnfwf57p43nw35z5se&style=0005&nbdigits=5&type=page&initCount=0" 
                          title="Free Counter" 
                          Alt="web counter" 
                          border="0" />
@@ -127,11 +123,11 @@
     </div>
 
     <script>
-        // Questo script impedisce al browser di caricare una versione vecchia (cache) dell'immagine
         window.onload = function() {
             var img = document.getElementById('visitor-cap');
             if(img) {
                 var currentSrc = img.src;
+                // Aggiunge un parametro temporale per forzare il ricaricamento dal server
                 img.src = currentSrc + "&t=" + new Date().getTime();
             }
         };
