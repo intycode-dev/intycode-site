@@ -16,10 +16,10 @@
             --text: #f8fafc;
             --accent: #38bdf8;
             --gold: #FFD700;
+            --green: #00FF00; /* Colore tipico dei terminali retro */
         }
 
         * {
-            /* Forza il font retro su tutto il documento */
             font-family: 'Press Start 2P', cursive !important;
             box-sizing: border-box;
         }
@@ -46,7 +46,7 @@
         }
 
         h1 {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             margin: 20px 0;
             line-height: 1.8;
             color: var(--gold);
@@ -74,7 +74,7 @@
             50% { opacity: 0.2; }
         }
 
-        /* 3. STILE CONTATORE */
+        /* 3. STILE NUOVO CONTATORE */
         .counter-section {
             margin-top: 40px;
             padding-top: 25px;
@@ -88,13 +88,16 @@
             letter-spacing: 1px;
         }
 
-        #visitor-cap {
-            /* Mantiene i pixel nitidi e non sfocati */
-            image-rendering: pixelated;
-            filter: brightness(1.1);
-            border: 1px solid #475569;
-            padding: 5px;
+        /* Stile display digitale */
+        #visitor-count {
+            display: inline-block;
+            font-size: 1rem;
+            color: var(--green);
             background: #000;
+            border: 2px solid #475569;
+            padding: 10px 15px;
+            letter-spacing: 4px;
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.1);
         }
     </style>
 </head>
@@ -110,27 +113,35 @@
         
         <div class="counter-section">
             <div class="counter-label">Visitors in the base</div>
-            <div align="center">
-                <a href="https://www.hitwebcounter.com" target="_blank">
-                    <img id="visitor-cap" 
-                         src="https://www.hitwebcounter.com/counter/counter.php?page=sfcfnd4hfxlg6w24kxnfwf57p43nw35z5se&style=0005&nbdigits=5&type=page&initCount=0&v=2" 
-                         title="Free Counter" 
-                         Alt="web counter" 
-                         border="0" />
-                </a>
-            </div>
+            <div id="visitor-count">00000</div>
         </div>
     </div>
 
     <script>
-        window.onload = function() {
-            var img = document.getElementById('visitor-cap');
-            if(img) {
-                var currentSrc = img.src;
-                // Aggiunge un parametro temporale per forzare il ricaricamento dal server
-                img.src = currentSrc + "&t=" + new Date().getTime();
+        // Utilizziamo un'API differente (Hicounter o simili) più tollerante ai redirect
+        // Se CountAPI dovesse essere offline, questo script gestisce l'errore elegantemente
+        async function loadCounter() {
+            const display = document.getElementById('visitor-count');
+            const namespace = 'intycoding.dev';
+            const key = 'v1';
+
+            try {
+                // Semplice chiamata fetch all'API di conteggio
+                const response = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+                const data = await response.json();
+                
+                if (data && data.value) {
+                    // Formatta il numero a 5 cifre (es. 00042)
+                    display.innerText = data.value.toString().padStart(5, '0');
+                }
+            } catch (error) {
+                console.error('Counter error:', error);
+                // Fallback in caso di errore: mostra un numero "statico" o un codice di errore
+                display.innerText = "00001"; 
             }
-        };
+        }
+
+        document.addEventListener('DOMContentLoaded', loadCounter);
     </script>
 
 </body>
