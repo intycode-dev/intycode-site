@@ -3,140 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IntyCoding.dev | Work in Progress</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>SYSTEM STATUS: WORK IN PROGRESS</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-    
     <style>
-        /* 2. CONFIGURAZIONE STILE */
-        :root {
-            --bg: #0f172a;
-            --text: #f8fafc;
-            --accent: #38bdf8;
-            --gold: #FFD700;
-            --green: #00FF00; /* Colore tipico dei terminali retro */
-        }
-
-        * {
-            font-family: 'Press Start 2P', cursive !important;
-            box-sizing: border-box;
-        }
-
+        /* Retro CRT Aesthetic */
         body {
-            background-color: var(--bg);
-            color: var(--text);
+            background-color: #000;
+            color: #b0e0e6; /* Classic Intellivision Cyan-Blue */
+            font-family: 'Press Start 2P', cursive;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            height: 100vh;
+            align-items: center;
+            min-height: 100vh;
             margin: 0;
             overflow: hidden;
-            text-transform: uppercase;
+            position: relative;
         }
 
-        .content {
-            text-align: center;
+        .terminal-container {
+            border: 6px double #b0e0e6;
             padding: 40px;
-            border: 4px double var(--accent);
-            background: rgba(0, 0, 0, 0.4);
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
-            max-width: 600px;
+            box-shadow: 0 0 20px #b0e0e6, inset 0 0 10px #b0e0e6;
+            text-align: center;
+            animation: monitor-flicker 2s infinite alternate;
+            background-color: rgba(0, 20, 40, 0.2);
+            max-width: 80%;
         }
 
         h1 {
-            font-size: 1.2rem;
-            margin: 20px 0;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #fff;
+            text-shadow: 3px 3px #b0e0e6;
+            letter-spacing: 4px;
+        }
+
+        .status-msg {
+            font-size: 1.1em;
             line-height: 1.8;
-            color: var(--gold);
+            margin-bottom: 40px;
+            text-transform: uppercase;
         }
 
-        .highlight {
-            color: var(--accent);
+        .loading-bar {
+            margin: 20px auto;
+            width: 300px;
+            height: 20px;
+            border: 2px solid #b0e0e6;
+            position: relative;
         }
 
-        p {
-            font-size: 0.7rem;
-            color: #94a3b8;
-            margin-bottom: 15px;
-            line-height: 1.6;
+        .loading-fill {
+            height: 100%;
+            background-color: #b0e0e6;
+            width: 60%; /* Static progress for WIP */
+            animation: pulse 1s infinite;
         }
 
-        .status-badge {
-            color: var(--accent);
-            font-size: 0.6rem;
-            margin-bottom: 25px;
-            animation: blink 1.2s infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0.2; }
-        }
-
-        /* 3. STILE NUOVO CONTATORE */
         .counter-section {
-            margin-top: 40px;
-            padding-top: 25px;
-            border-top: 2px solid #334155;
+            margin-top: 50px;
+            border-top: 2px solid #b0e0e6;
+            padding-top: 20px;
         }
 
         .counter-label {
-            font-size: 0.5rem;
-            color: #64748b;
+            font-size: 0.8em;
             margin-bottom: 15px;
-            letter-spacing: 1px;
+            display: block;
+            color: #00ff00; /* Retro green */
         }
 
-        /* Stile display digitale */
-        #visitor-count {
-            display: inline-block;
-            font-size: 1rem;
-            color: var(--green);
-            background: #000;
-            border: 2px solid #475569;
-            padding: 10px 15px;
-            letter-spacing: 4px;
-            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.1);
+        /* Scanline Overlay */
+        body::after {
+            content: " ";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        @keyframes monitor-flicker {
+            0% { opacity: 0.97; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
         }
     </style>
 </head>
 <body>
 
-    <div class="content">
-        <div class="status-badge">System Status: Booting...</div>
+    <div class="terminal-container">
+        <h1>WORK IN PROGRESS</h1>
         
-        <h1>Welcome to <br><span class="highlight">IntyCoding.dev</span></h1>
-        
-        <p>Mastering CP1610 Assembly</p>
-        <p>and Intellivision Dev.</p>
-        
+        <div class="status-msg">
+            > SYSTEM INITIALIZING...<br>
+            > LOADING GAME ASSETS...<br>
+            > PLEASE WAIT FOR THE NEXT RELEASE.
+        </div>
+
+        <div class="loading-bar">
+            <div class="loading-fill"></div>
+        </div>
+
         <div class="counter-section">
-            <div class="counter-label">Visitors in the base</div>
-            <div id="visitor-count">00000</div>
+            <span class="counter-label">TOTAL USERS DETECTED:</span>
+            <img src="https://komarev.com/ghpvc/?username=YOUR-USERNAME&color=00ff00&style=for-the-badge&label=VISITORS" alt="Profile Views">
         </div>
     </div>
-
-    <script>
-        // Utilizziamo un'API differente (Hicounter o simili) più tollerante ai redirect
-        // Se CountAPI dovesse essere offline, questo script gestisce l'errore elegantemente
-    async function loadCounter() {
-        const display = document.getElementById('visitor-count');
-        // Sostituisci 'tuo-username' con il tuo nome GitHub
-        const url = 'https://count.getloli.com/get/@intycoding-site?theme=asoul';
-
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-            // Questo servizio è pensato per GitHub e gestisce bene il traffico
-            display.innerText = data.value.toString().padStart(5, '0');
-        } catch (error) {
-            console.error("Errore contatore GitHub:", error);
-            display.innerText = "00011";
-        }
-    }
-        document.addEventListener('DOMContentLoaded', loadCounter);
-    </script>
 
 </body>
 </html>
