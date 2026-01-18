@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYSTEM STATUS: WORK IN PROGRESS</title>
+    <title>INTYCODE-DEV // SYSTEM STATUS</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
-        /* Retro CRT Aesthetic */
         body {
             background-color: #000;
-            color: #b0e0e6; /* Classic Intellivision Cyan-Blue */
+            color: #b0e0e6; /* Intellivision Cyan */
             font-family: 'Press Start 2P', cursive;
             display: flex;
             flex-direction: column;
@@ -17,108 +16,77 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
-            overflow: hidden;
             position: relative;
+            overflow: hidden;
         }
 
-        .terminal-container {
-            border: 6px double #b0e0e6;
-            padding: 40px;
-            box-shadow: 0 0 20px #b0e0e6, inset 0 0 10px #b0e0e6;
+        /* CRT Screen Effect */
+        .screen {
+            border: 8px solid #333;
+            border-radius: 20px;
+            padding: 50px;
+            background: rgba(0, 30, 60, 0.2);
+            box-shadow: 0 0 30px #b0e0e6, inset 0 0 20px #b0e0e6;
             text-align: center;
-            animation: monitor-flicker 2s infinite alternate;
-            background-color: rgba(0, 20, 40, 0.2);
-            max-width: 80%;
+            z-index: 5;
+            position: relative;
         }
 
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
+            font-size: 1.4em;
             color: #fff;
-            text-shadow: 3px 3px #b0e0e6;
-            letter-spacing: 4px;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px #ff00ff; /* Subtle glitch */
         }
 
         .status-msg {
-            font-size: 1.1em;
-            line-height: 1.8;
+            font-size: 0.8em;
+            line-height: 2;
+            color: #00ff00; /* Retro green text */
             margin-bottom: 40px;
-            text-transform: uppercase;
         }
 
-        .loading-bar {
-            margin: 20px auto;
-            width: 300px;
-            height: 20px;
-            border: 2px solid #b0e0e6;
-            position: relative;
-        }
-
-        .loading-fill {
-            height: 100%;
-            background-color: #b0e0e6;
-            width: 60%; /* Static progress for WIP */
-            animation: pulse 1s infinite;
-        }
-
+        /* Counter Styling */
         .counter-section {
-            margin-top: 50px;
+            margin-top: 30px;
             border-top: 2px solid #b0e0e6;
             padding-top: 20px;
         }
 
-        .counter-label {
-            font-size: 0.8em;
+        .label {
+            font-size: 0.5em;
             margin-bottom: 15px;
             display: block;
-            color: #00ff00; /* Retro green */
+            letter-spacing: 2px;
         }
 
-        /* Scanline Overlay */
+        /* Scanlines Overlay */
         body::after {
             content: " ";
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
             background-size: 100% 4px, 3px 100%;
             pointer-events: none;
             z-index: 10;
-        }
-
-        @keyframes monitor-flicker {
-            0% { opacity: 0.97; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.4; }
-            50% { opacity: 1; }
-            100% { opacity: 0.4; }
         }
     </style>
 </head>
 <body>
 
-    <div class="terminal-container">
+    <div class="screen">
         <h1>WORK IN PROGRESS</h1>
         
         <div class="status-msg">
-            > SYSTEM INITIALIZING...<br>
-            > LOADING GAME ASSETS...<br>
-            > PLEASE WAIT FOR THE NEXT RELEASE.
-        </div>
-
-        <div class="loading-bar">
-            <div class="loading-fill"></div>
+            > INTYCODE-DEV CORE LOADING...<br>
+            > GRAPHICS SECTOR: OPTIMIZING<br>
+            > PLEASE STAND BY
         </div>
 
         <div class="counter-section">
-            <span class="counter-label">TOTAL USERS DETECTED:</span>
-            <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fintycoding.dev%2F&label=&icon=aspect-ratio&color=%23198754&message=&style=flat&tz=UTC" alt="Profile Views">
+            <span class="label">TOTAL SYSTEM ACCESSES:</span>
+            <img src="https://hitscounter.dev/user/intycode-dev?style=flat-square&label=ACCESSES&labelColor=333333&color=00ff00" alt="Hits Counter">
         </div>
     </div>
 
